@@ -84,11 +84,10 @@ def main():
     fund_data = [
         '001071',  # 华安媒体互联网混合
         '006879',  # 华安智能生活混合
-        '005962',  # 宝盈人工智能主题股票A
+        '005963',  # 宝盈人工智能主题股票C
         '007874',  # 华宝科技ETF联接C
-        '001028',  # 华安物联网主题股票
-        '003096',  # 中欧医疗健康混合C
-        '006113',  # 汇添富创新医药主题混合
+        '008084',  # 海富通先进制造股票C
+        '519674',  # 银河创新成长混合
     ]
     # 大盘信息
     share = Shares()
@@ -106,7 +105,7 @@ def main():
     # 现在时间
     now_time = datetime.now()
     # night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
-    night_time = datetime.strptime(str(datetime.now().date()) + '11:00', '%Y-%m-%d%H:%M')
+    night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
     if now_time >= night_time:
         # 最终结果
         funds_data = fund.get_finally_response(fund_data)
