@@ -105,7 +105,7 @@ def main():
     # 现在时间
     now_time = datetime.now()
     # night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
-    night_time = datetime.strptime(str(datetime.now().date()) + '11:00', '%Y-%m-%d%H:%M')
+    night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
     if now_time >= night_time:
         # 最终结果
         funds_data = fund.get_finally_response(fund_data)

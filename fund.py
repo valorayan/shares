@@ -43,7 +43,7 @@ class Fund(object):
             for value in data:
                 res = value.split(':')
                 fund[res[0].strip("\"")] = res[1].strip("\"")
-            fund['img_url'] = self.img_url.format(code=code)
+            fund['img_url'] = self.img_url.format(code=code['code'])
             result.append(fund)
         return result
 
