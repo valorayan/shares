@@ -84,22 +84,26 @@ class Fund(object):
         response = response.json()
         if response['retcode'] == 0:
             res_data = response['list']
-            for code in data:
-                for val in res_data:
-                    fund_data = {}
-                    fund_data['fundcode'] = val['fundcode']  # code 基金代码，
-                    fund_data['fundname'] = val['fundname']  # name 基金名称，
-                    fund_data['nav'] = val['nav']  # nav 今天最新净值，
-                    fund_data['growthrate'] = val['growthrate']  # growthrate 今天最新涨跌幅，
-                    fund_data['totalnav'] = val['totalnav']  # totalnav 昨天净值，
-                    fund_data['monthrate1'] = val['monthrate1']  # monthrate1 近1月涨跌幅，
-                    fund_data['quartzrate1'] = val['quartzrate1']  # quartzrate1 近3月涨跌幅，
-                    fund_data['halfyearrate'] = val['halfyearrate']  # halfyearrate 近6月涨跌幅，
-                    fund_data['yearrate1'] = val['yearrate1']  # yearrate1 近1年涨跌幅，
-                    fund_data['threeyearrate'] = val['threeyearrate']  # threeyearrate 近3年涨跌幅，
-                    fund_data['baseyearrate'] = val['baseyearrate']  # baseyearrate 成立以来涨跌幅，
-                    fund_data['d_value'] = (val['nav'] - val['totalnav']) * code['number']  # 预估当天盈亏值，
-                    result.append(fund_data)
+
+            for val in res_data:
+                for code in data:
+                    if val['fundcode'] == code['code']:
+                        fund_data = {}
+                        fund_data['fundcode'] = val['fundcode']  # code 基金代码，
+                        fund_data['fundname'] = val['fundname']  # name 基金名称，
+                        fund_data['nav'] = val['nav']  # nav 今天最新净值，
+                        fund_data['growthrate'] = val['growthrate']  # growthrate 今天最新涨跌幅，
+                        fund_data['totalnav'] = val['totalnav']  # totalnav 昨天净值，
+                        fund_data['monthrate1'] = val['monthrate1']  # monthrate1 近1月涨跌幅，
+                        fund_data['quartzrate1'] = val['quartzrate1']  # quartzrate1 近3月涨跌幅，
+                        fund_data['halfyearrate'] = val['halfyearrate']  # halfyearrate 近6月涨跌幅，
+                        fund_data['yearrate1'] = val['yearrate1']  # yearrate1 近1年涨跌幅，
+                        fund_data['threeyearrate'] = val['threeyearrate']  # threeyearrate 近3年涨跌幅，
+                        fund_data['baseyearrate'] = val['baseyearrate']  # baseyearrate 成立以来涨跌幅，
+                        fund_data['d_value'] = (val['nav'] - val['totalnav']) * code['number']  # 预估当天盈亏值，
+                        result.append(fund_data)
+                        #　省时
+                        del data[data.index(code)]
         return result
 
     def get_finally_content(self, data):
@@ -125,8 +129,8 @@ class Fund(object):
                        + '近6月涨跌幅： ' + str(round(value['halfyearrate'], 2)) + '%，' \
                        + '近1年涨跌幅： ' + str(round(value['yearrate1'], 2)) + '%，' + "\r\n" \
                        + '近3年涨跌幅： ' + str(round(value['threeyearrate'], 2)) + '%，' \
-                       + '成立来涨跌幅： ' + str(round(value['baseyearrate'], 2)) + '%，' \
-                       + '今天收益估算为： ' + str(round(value['d_value'], 4)) * + "\r\n\r\n"
+                       + '成立来涨跌幅： ' + str(round(value['baseyearrate'], 2)) + '%，' + "\r\n" \
+                       + '收益估算为： ' + str(round(value['d_value'], 4)) + "\r\n\r\n"
             final_datas['content'] = content
             # 基金图片
             result.append(final_datas)

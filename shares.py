@@ -82,12 +82,12 @@ def main():
     #      "img_url": "http://j4.dfcfw.com/charts/pic6/006113.png"},   # 汇添富创新医药主题混合
     # ]
     fund_data = [
-        {"code": "001071", "number": "2642.37"},  # 华安媒体互联网混合
-        {"code": "006879", "number": "3277.28"},  # 华安智能生活混合
-        {"code": "005963", "number": "1921.22"},  # 宝盈人工智能主题股票C
-        {"code": "007874", "number": "3016.99"},  # 华宝科技ETF联接C
-        {"code": "008084", "number": "4350.52"},  # 海富通先进制造股票C
-        {"code": "519674", "number": "550.00"},  # 银河创新成长混合
+        {"code": "001071", "number": 2642.37},  # 华安媒体互联网混合
+        {"code": "006879", "number": 3277.28},  # 华安智能生活混合
+        {"code": "005963", "number": 1921.22},  # 宝盈人工智能主题股票C
+        {"code": "007874", "number": 3016.99},  # 华宝科技ETF联接C
+        {"code": "008084", "number": 4350.52},  # 海富通先进制造股票C
+        {"code": "519674", "number": 550.00},  # 银河创新成长混合
     ]
     # 大盘信息
     share = Shares()
@@ -105,7 +105,7 @@ def main():
     # 现在时间
     now_time = datetime.now()
     # night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
-    night_time = datetime.strptime(str(datetime.now().date()) + '22:00', '%Y-%m-%d%H:%M')
+    night_time = datetime.strptime(str(datetime.now().date()) + '11:00', '%Y-%m-%d%H:%M')
     if now_time >= night_time:
         # 最终结果
         funds_data = fund.get_finally_response(fund_data)
