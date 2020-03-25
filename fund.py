@@ -86,8 +86,8 @@ class Fund(object):
             res_data = response['list']
 
             for val in res_data:
-                for code in data:
-                    if val['fundcode'] == code['code']:
+                # for code in data:
+                #     if val['fundcode'] == code['code']:
                         fund_data = {}
                         fund_data['fundcode'] = val['fundcode']  # code 基金代码，
                         fund_data['fundname'] = val['fundname']  # name 基金名称，
@@ -100,10 +100,11 @@ class Fund(object):
                         fund_data['yearrate1'] = val['yearrate1']  # yearrate1 近1年涨跌幅，
                         fund_data['threeyearrate'] = val['threeyearrate']  # threeyearrate 近3年涨跌幅，
                         fund_data['baseyearrate'] = val['baseyearrate']  # baseyearrate 成立以来涨跌幅，
-                        fund_data['d_value'] = (val['nav'] - val['totalnav']) * code['number']  # 预估当天盈亏值，
+                        fund_data['d_value'] = [(val['nav'] - val['totalnav']) * code['number'] for code in data if
+                                                val['fundcode'] == code['code']]  # 预估当天盈亏值，
                         result.append(fund_data)
-                        #　省时
-                        del data[data.index(code)]
+                        # 　省时
+                        # del data[data.index(code)]
         return result
 
     def get_finally_content(self, data):
@@ -130,7 +131,7 @@ class Fund(object):
                        + '近1年涨跌幅： ' + str(round(value['yearrate1'], 2)) + '%，' + "\r\n" \
                        + '近3年涨跌幅： ' + str(round(value['threeyearrate'], 2)) + '%，' \
                        + '成立来涨跌幅： ' + str(round(value['baseyearrate'], 2)) + '%，' + "\r\n" \
-                       + '收益估算为： ' + str(round(value['d_value'], 4)) + "\r\n\r\n"
+                       + '收益估算为： ' + str(round(value['d_value'][0], 4)) + "\r\n\r\n"
             final_datas['content'] = content
             # 基金图片
             result.append(final_datas)
