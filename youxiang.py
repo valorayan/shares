@@ -53,7 +53,7 @@ class YouXiang(object):
 # mail_password = 'ebwalwpgdwbzbiba'
 
 if __name__ == "__main__":
-    smtp = YouXiang('smtp.qq.com', 465, '395053387@qq.com', 'ebwalwpgdwbzbiba', '395053387@qq.com', 'valorayan@126.com',
+    smtp = YouXiang('smtp.qq.com', 465, '395053387@qq.com', 'kehuduanshouquanma', '395053387@qq.com', 'valorayan@126.com',
                     '股盘及基金信息')
     smtp.add_content('封装发送内容')
     smtp.add_img(file_path='./创业板指.png')
